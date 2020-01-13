@@ -3,14 +3,16 @@ from flair.data import Sentence, Span
 from typing import List, Optional, Dict, Any
 from ner_entity import NerEntity
 from dataclasses import asdict
+from pathlib import Path
+from os import path
 
 
 def load_flair_fr() -> SequenceTagger:
-    return SequenceTagger.load('fr-ner')
+    return SequenceTagger.load(path.join(Path.cwd(), 'models/fr-ner-wikiner-0.4.pt'))
 
 
 def load_flair_en() -> SequenceTagger:
-    return SequenceTagger.load('ner-fast')
+    return SequenceTagger.load(path.join(Path.cwd(), 'models/en-ner-fast-conll03-v0.4.pt'))
 
 
 flair_fr = load_flair_fr()

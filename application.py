@@ -3,10 +3,10 @@ from ner import get_flair, evaluate
 import json
 from errors import *
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.errorhandler(HTTPException)
+@application.errorhandler(HTTPException)
 def handle_exception(e):
     response = e.get_response()
     response.data = json.dumps({
@@ -18,8 +18,8 @@ def handle_exception(e):
     return response
 
 
-@app.route("/api/v1/entities", methods=["POST"])
-def get():
+@application.route("/api/v1/entities", methods=["POST"])
+def entities():
     if request.content_type == "application/json":
         body = json.loads(request.data) if request.data else {}
 
@@ -40,5 +40,10 @@ def get():
         raise InvalidUsage()
 
 
+@application.route("/ping", methods=["GET"])
+def ping():
+    return '', 200
+
+
 if __name__ == "__main__":
-    app.run(port="5000")
+    application.run(host="0.0.0.0", port="5000")

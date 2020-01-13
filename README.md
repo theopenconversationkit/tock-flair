@@ -1,7 +1,7 @@
 Named Entity Recognition API
 ===
 
-This API could be asked as follows :
+This API has this endpoint :
 
 `POST /api/v1/entities`
 
@@ -30,17 +30,17 @@ The 200 response would answer :
 }
 ```
 
-Using of Python Flask library on `v1`.
+Using Flair library on `v1` for NER.
 
-Contribute
-===
+## Contribute
 
-First, use `virtualenv venv` then `source venv/bin/activate` and `pip install -r requirements.txt` for development.
-Start the WSGI with `FLASK_ENV=development python handler.py` in development mode.
+First, use `virtualenv venv` then `source venv/bin/activate` and `pip install -r requirements/dev.txt` for development.
+Download the models with the script in `build/download_models.sh`.
+Start the WSGI with `FLASK_ENV=development python application.py` in development mode.
 
-Docker
-===
+## Docker
 
 Dockerfile provided for deployment.
-Production mode : https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html
-Production mode with Docker : https://aws.amazon.com/fr/blogs/devops/dockerizing-a-python-web-app/
+Build : `docker build -t name .`
+Run local : `docker run -p 8080:5000 name`
+On Amazon : https://aws.amazon.com/fr/blogs/devops/dockerizing-a-python-web-app/
