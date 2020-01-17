@@ -39,4 +39,4 @@ class NerEntity:
             return "flair:location"
         if tag == "ORG":
             return "flair:organization"
-        return "flair:named_entity"
+        return None
