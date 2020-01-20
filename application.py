@@ -5,6 +5,7 @@ from errors import *
 
 application = Flask(__name__)
 
+
 @application.errorhandler(HTTPException)
 def handle_exception(e):
     response = e.get_response()
@@ -16,34 +17,33 @@ def handle_exception(e):
     response.content_type = "application/json"
     return response
 
-@application.route("/parse", methods=["POST"])
+
+@application.route("/api/v1/parse", methods=["POST"])
 def parse():
     if request.content_type == "application/json":
-            body = json.loads(request.data) if request.data else {}
+        body = json.loads(request.data) if request.data else {}
 
-            language = body["language"] if "language" in body.keys() else None
-            if not language:
-                raise LanguageMandatory()
-            flair = get_flair(language)
-            if not flair:
-                raise LanguageInvalid()
+        language = body["language"] if "language" in body.keys() else None
+        if not language:
+            raise LanguageMandatory()
+        flair = get_flair(language)
+        if not flair:
+            raise LanguageInvalid()
 
-            content = body["text"] if "text" in body.keys() else None
-            if not content:
-                raise TextMandatory()
+        content = body["text"] if "text" in body.keys() else None
+        if not content:
+            raise TextMandatory()
 
-            return evaluate(flair, content)
+        return evaluate(flair, content)
 
     else:
-            raise InvalidUsage()
+        raise InvalidUsage()
 
-@application.route("/entities", methods=["GET"])
+
+@application.route("/api/v1/entities", methods=["GET"])
 def entities():
-    return jsonify(['flair:person','flair:location','flair:organization']), 200
+    return jsonify(["flair:person", "flair:location", "flair:organization"]), 200
 
-@application.route("/ping", methods=["GET"])
-def ping():
-    return '', 200
 
 @application.route("/healthcheck", methods=["GET"])
 def healthcheck():

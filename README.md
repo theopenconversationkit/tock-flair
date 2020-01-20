@@ -1,9 +1,13 @@
-Named Entity Recognition API
+Named Entity Recognition API with Flair
 ===
+
+You can use it as a rest engine on Tock. More info : 
+
+https://github.com/theopenconversationkit/tock
 
 This API has this endpoint :
 
-`POST /api/v1/entities`
+`POST /api/v1/parse`
 
 ```
 {
@@ -30,17 +34,36 @@ The 200 response would answer :
 }
 ```
 
+`GET /api/v1/entities`
+
+The 200 response would answer :
+
+```
+[
+  "flair:person",
+  "flair:location",
+  "flair:organization"
+]
+```
+
 Using Flair library on `v1` for NER.
 
 ## Contribute
 
 First, use `virtualenv venv` then `source venv/bin/activate` and `pip install -r requirements/dev.txt` for development.
+
 Download the models with the script in `build/download_models.sh`.
+
 Start the WSGI with `FLASK_ENV=development python application.py` in development mode.
 
 ## Docker
 
 Dockerfile provided for deployment.
+
 Build : `docker build -t name .`
+
 Run local : `docker run -p 8080:5000 name`
-On Amazon : https://aws.amazon.com/fr/blogs/devops/dockerizing-a-python-web-app/
+
+### Amazon
+
+See https://aws.amazon.com/fr/blogs/devops/dockerizing-a-python-web-app/ for a FLask deployment on EB.
