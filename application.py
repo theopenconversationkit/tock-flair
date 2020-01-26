@@ -45,7 +45,7 @@ def entities():
     return jsonify(["flair:person", "flair:location", "flair:organization"]), 200
 
 
-@application.route("/healthcheck", methods=["GET"])
+@application.route("/app/v1/healthcheck", methods=["GET"])
 def healthcheck():
     return '', 200
 
