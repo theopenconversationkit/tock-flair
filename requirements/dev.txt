@@ -1,2 +1,2 @@
 -r common.txt
-autopep8==1.4.4
+autopep8==2.0.2

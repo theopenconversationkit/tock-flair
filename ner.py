@@ -8,11 +8,20 @@ from os import path
 
 
 def load_flair_fr() -> SequenceTagger:
-    return SequenceTagger.load(path.join(Path.cwd(), 'models/fr-ner-wikiner-0.4.pt'))
+    # if loaded from downloaded models
+    # return SequenceTagger.load(path.join(Path.cwd(), 'models/fr-ner-wikiner-0.4.pt'))
+    return SequenceTagger.load("flair/ner-french")
 
 
 def load_flair_en() -> SequenceTagger:
-    return SequenceTagger.load(path.join(Path.cwd(), 'models/en-ner-fast-conll03-v0.4.pt'))
+        # if loaded from downloaded models
+    # return SequenceTagger.load(path.join(Path.cwd(), 'models/en-ner-fast-conll03-v0.4.pt'))
+    return SequenceTagger.load("flair/ner-english")
+
+
+from flair.models import SequenceTagger
+
+
 
 
 flair_fr = load_flair_fr()
