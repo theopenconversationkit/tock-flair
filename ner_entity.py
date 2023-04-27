@@ -24,8 +24,8 @@ class NerEntity:
     def from_span(cls, span: Span) -> NerEntity:
         return NerEntity(
             entity=NerEntityInfo(
-                start=span.start_pos,
-                end=span.end_pos,
+                start=span.start_position,
+                end=span.end_position,
                 type=NerEntityType(name=cls._retrieve_type_from(span.tag))
             ),
             probability=min(1, span.score)
